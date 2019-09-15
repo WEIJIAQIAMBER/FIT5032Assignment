@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="attraction">
           <Key>
             <PropertyRef Name="attractionId" />
@@ -83,7 +100,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Model1StoreContainer">
+        <Association Name="FK__userPrefere__UID__38996AB5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="userPreference" Type="Self.userPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userPreference">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model2StoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="attraction" EntityType="Self.attraction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="guide" EntityType="Self.guide" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tourPlan" EntityType="Self.tourPlan" Schema="dbo" store:Type="Tables" />
@@ -100,12 +130,34 @@
             <End Role="userPreference" EntitySet="userPreference" />
             <End Role="tourPlan" EntitySet="tourPlan" />
           </AssociationSet>
+          <AssociationSet Name="FK__userPrefere__UID__38996AB5" Association="Self.FK__userPrefere__UID__38996AB5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="userPreference" EntitySet="userPreference" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="userPreference" Relationship="Self.FK__userPrefere__UID__38996AB5" FromRole="AspNetUsers" ToRole="userPreference" />
+        </EntityType>
         <EntityType Name="attraction">
           <Key>
             <PropertyRef Name="attractionId" />
@@ -152,8 +204,21 @@
           <Property Name="guideType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="generateTime" Type="DateTime" Precision="0" />
           <Property Name="UID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__userPrefere__UID__38996AB5" FromRole="userPreference" ToRole="AspNetUsers" />
           <NavigationProperty Name="tourPlan" Relationship="Self.FK__tourPlan__prefer__3B75D760" FromRole="userPreference" ToRole="tourPlan" />
         </EntityType>
+        <Association Name="FK__userPrefere__UID__38996AB5">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="userPreference" Type="Self.userPreference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userPreference">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tourPlan__attrac__4CA06362">
           <End Role="attraction" Type="Self.attraction" Multiplicity="0..1" />
           <End Role="tourPlan" Type="Self.tourPlan" Multiplicity="*" />
@@ -190,11 +255,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="attraction" EntityType="Self.attraction" />
           <EntitySet Name="guide" EntityType="Self.guide" />
           <EntitySet Name="tourPlan" EntityType="Self.tourPlan" />
           <EntitySet Name="userPreference" EntityType="Self.userPreference" />
+          <AssociationSet Name="FK__userPrefere__UID__38996AB5" Association="Self.FK__userPrefere__UID__38996AB5">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="userPreference" EntitySet="userPreference" />
+          </AssociationSet>
           <AssociationSet Name="FK__tourPlan__attrac__4CA06362" Association="Self.FK__tourPlan__attrac__4CA06362">
             <End Role="attraction" EntitySet="attraction" />
             <End Role="tourPlan" EntitySet="tourPlan" />
@@ -213,9 +283,27 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Entities1">
+        <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="Entities2">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model2.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="attraction">
-            <EntityTypeMapping TypeName="Model1.attraction">
+            <EntityTypeMapping TypeName="Model2.attraction">
               <MappingFragment StoreEntitySet="attraction">
                 <ScalarProperty Name="attractionId" ColumnName="attractionId" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -224,7 +312,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="guide">
-            <EntityTypeMapping TypeName="Model1.guide">
+            <EntityTypeMapping TypeName="Model2.guide">
               <MappingFragment StoreEntitySet="guide">
                 <ScalarProperty Name="guideId" ColumnName="guideId" />
                 <ScalarProperty Name="guideName" ColumnName="guideName" />
@@ -234,7 +322,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tourPlan">
-            <EntityTypeMapping TypeName="Model1.tourPlan">
+            <EntityTypeMapping TypeName="Model2.tourPlan">
               <MappingFragment StoreEntitySet="tourPlan">
                 <ScalarProperty Name="tourPlanId" ColumnName="tourPlanId" />
                 <ScalarProperty Name="attractionDetails" ColumnName="attractionDetails" />
@@ -248,7 +336,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="userPreference">
-            <EntityTypeMapping TypeName="Model1.userPreference">
+            <EntityTypeMapping TypeName="Model2.userPreference">
               <MappingFragment StoreEntitySet="userPreference">
                 <ScalarProperty Name="preferenceID" ColumnName="preferenceID" />
                 <ScalarProperty Name="durationDays" ColumnName="durationDays" />

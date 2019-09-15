@@ -12,24 +12,28 @@ namespace FIT5032Assignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class userPreference
+    public partial class AspNetUsers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public userPreference()
+        public AspNetUsers()
         {
-            this.tourPlan = new HashSet<tourPlan>();
+            this.userPreference = new HashSet<userPreference>();
         }
     
-        public int preferenceID { get; set; }
-        public Nullable<System.DateTime> durationDays { get; set; }
-        public string attractionName { get; set; }
-        public Nullable<int> budget { get; set; }
-        public string guideType { get; set; }
-        public Nullable<System.DateTime> generateTime { get; set; }
-        public string UID { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string UserName { get; set; }
     
-        public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tourPlan> tourPlan { get; set; }
+        public virtual ICollection<userPreference> userPreference { get; set; }
     }
 }

@@ -28,7 +28,7 @@
             @Html.DisplayNameFor(model => model.generateTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UID)
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
         </th>
         <th></th>
     </tr>
@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.generateTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UID)
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.preferenceID }) |

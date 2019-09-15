@@ -12,7 +12,7 @@ namespace FIT5032Assignment.Controllers
 {
     public class tourPlansController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities2 db = new Entities2();
 
         // GET: tourPlans
         public ActionResult Index()

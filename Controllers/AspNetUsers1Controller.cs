@@ -10,107 +10,107 @@ using FIT5032Assignment.Models;
 
 namespace FIT5032Assignment.Controllers
 {
-    public class guidesController : Controller
+    public class AspNetUsers1Controller : Controller
     {
         private Entities2 db = new Entities2();
 
-        // GET: guides
+        // GET: AspNetUsers1
         public ActionResult Index()
         {
-            return View(db.guide.ToList());
+            return View(db.AspNetUsers.ToList());
         }
 
-        // GET: guides/Details/5
-        public ActionResult Details(int? id)
+        // GET: AspNetUsers1/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            guide guide = db.guide.Find(id);
-            if (guide == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(guide);
+            return View(aspNetUsers);
         }
 
-        // GET: guides/Create
+        // GET: AspNetUsers1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: guides/Create
+        // POST: AspNetUsers1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "guideId,guideName,guidetype,registerDate")] guide guide)
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
             {
-                db.guide.Add(guide);
+                db.AspNetUsers.Add(aspNetUsers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(guide);
+            return View(aspNetUsers);
         }
 
-        // GET: guides/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: AspNetUsers1/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            guide guide = db.guide.Find(id);
-            if (guide == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(guide);
+            return View(aspNetUsers);
         }
 
-        // POST: guides/Edit/5
+        // POST: AspNetUsers1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "guideId,guideName,guidetype,registerDate")] guide guide)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(guide).State = EntityState.Modified;
+                db.Entry(aspNetUsers).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(guide);
+            return View(aspNetUsers);
         }
 
-        // GET: guides/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: AspNetUsers1/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            guide guide = db.guide.Find(id);
-            if (guide == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(guide);
+            return View(aspNetUsers);
         }
 
-        // POST: guides/Delete/5
+        // POST: AspNetUsers1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            guide guide = db.guide.Find(id);
-            db.guide.Remove(guide);
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            db.AspNetUsers.Remove(aspNetUsers);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

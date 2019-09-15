@@ -12,12 +12,13 @@ namespace FIT5032Assignment.Controllers
 {
     public class userPreferencesController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities2 db = new Entities2();
 
         // GET: userPreferences
         public ActionResult Index()
         {
-            return View(db.userPreference.ToList());
+            var userPreference = db.userPreference.Include(u => u.AspNetUsers);
+            return View(userPreference.ToList());
         }
 
         // GET: userPreferences/Details/5
@@ -38,6 +39,7 @@ namespace FIT5032Assignment.Controllers
         // GET: userPreferences/Create
         public ActionResult Create()
         {
+            ViewBag.UID = new SelectList(db.AspNetUsers, "Id", "Email");
             return View();
         }
 
@@ -55,6 +57,7 @@ namespace FIT5032Assignment.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.UID = new SelectList(db.AspNetUsers, "Id", "Email", userPreference.UID);
             return View(userPreference);
         }
 
@@ -70,6 +73,7 @@ namespace FIT5032Assignment.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UID = new SelectList(db.AspNetUsers, "Id", "Email", userPreference.UID);
             return View(userPreference);
         }
 
@@ -86,6 +90,7 @@ namespace FIT5032Assignment.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.UID = new SelectList(db.AspNetUsers, "Id", "Email", userPreference.UID);
             return View(userPreference);
         }
 

@@ -13,10 +13,10 @@ namespace FIT5032Assignment.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class Entities2 : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public Entities2()
+            : base("name=Entities2")
         {
         }
     
@@ -25,6 +25,7 @@ namespace FIT5032Assignment.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<attraction> attraction { get; set; }
         public virtual DbSet<guide> guide { get; set; }
         public virtual DbSet<tourPlan> tourPlan { get; set; }

@@ -107,3 +107,15 @@ namespace FIT5032Assignment
         }
     }
 }
+
+public class ApplicationRoleManager : RoleManager<ApplicationRole>
+{
+    public ApplicationRoleManager(IRoleStore<ApplicationRole, String> roleStore) : base(roleStore) { }
+    public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+    {
+        var applicationRoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context.Get<ApplicationDbContext>()));
+        return applicationRoleManager;
+    }
+
+
+}
