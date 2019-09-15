@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FIT5032Assignment.Models.userPreference>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.durationDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.attractionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.budget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guideType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.generateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.durationDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.attractionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.budget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guideType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.generateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.preferenceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.preferenceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.preferenceID })
+        </td>
+    </tr>
+}
+
+</table>

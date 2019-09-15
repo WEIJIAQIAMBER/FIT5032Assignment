@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FIT5032Assignment.Models.guide>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.guideName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guidetype)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registerDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.guideName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guidetype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registerDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.guideId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.guideId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.guideId })
+        </td>
+    </tr>
+}
+
+</table>

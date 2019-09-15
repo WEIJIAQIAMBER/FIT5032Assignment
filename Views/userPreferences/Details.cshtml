@@ -1,0 +1,67 @@
+﻿@model FIT5032Assignment.Models.userPreference
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>userPreference</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.durationDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.durationDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.attractionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.attractionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.budget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.budget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guideType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guideType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.generateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.generateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.preferenceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

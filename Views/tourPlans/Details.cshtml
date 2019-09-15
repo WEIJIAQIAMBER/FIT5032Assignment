@@ -1,0 +1,75 @@
+﻿@model FIT5032Assignment.Models.tourPlan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tourPlan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.attractionDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.attractionDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.geneateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.geneateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.calendar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calendar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.attraction.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.attraction.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guide.guideName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guide.guideName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userPreference.attractionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userPreference.attractionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.tourPlanId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

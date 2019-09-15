@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>welcom to Tourism Plan</h1>
+    <p class="lead">Plan a unique trip for YOURSELF</p>
+
+</div>
+
+<div class="row">
+    @if (User.Identity.IsAuthenticated)
+    {
+    <div class="col-md-6">
+        <h2>Start you plan</h2>
+        <p>
+            customize you plan preference
+        </p>
+        <li>@Html.ActionLink("Manage YOUR Preference", "Index", "userPreferences")</li>
+    </div>
+    <div class="col-md-6">
+        <h2>View your booking history</h2>
+        <p>you can rate your previous trip</p>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>}
+
+<div class="col-md-4">
+        <h2>guideType</h2>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+    </div>
