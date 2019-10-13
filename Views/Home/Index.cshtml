@@ -2,11 +2,18 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>welcom to Tourism Plan</h1>
-    <p class="lead">Plan a unique trip for YOURSELF</p>
+    <div class="jumbotron">
+        <h1>welcom to Tourism Plan</h1>
+        <p class="lead">Plan a unique trip for YOURSELF</p>
+        <picture>
+            <source media="(min-width: 640px)" srcset="/image/image-640.jpg">
+            <source media="(max-width: 320px)" srcset="/image/image-320.jpg">
+            <img src="/image/image-320.jpg" alt="Plan a unique trip for YOURSELF">
+        </picture>
+     
 
-</div>
+
+    </div>
 
 <div class="row">
     @if (User.Identity.IsAuthenticated)

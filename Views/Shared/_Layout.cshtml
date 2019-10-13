@@ -23,8 +23,16 @@
                 @if (User.Identity.IsAuthenticated)
                 {<ul class="nav navbar-nav">
     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-    <li>@Html.ActionLink("Role", "Index", "Role")</li>
+    <li>@Html.ActionLink("preference", "Index", "userPreferences")</li>
+    }
     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+    @if (User.IsInRole("admin"))
+    {
+        <li>@Html.ActionLink("attractionManage", "Index", "attractions")</li>
+        <li>@Html.ActionLink("RoleManage", "Index", "Role")</li>
+        <li>@Html.ActionLink("guideManage", "Index", "guides")</li>
+        <li>@Html.ActionLink("Send_Email", "Send_Email", "Home")</li>
+    }
 </ul>
                 }
                     @Html.Partial("_LoginPartial")
